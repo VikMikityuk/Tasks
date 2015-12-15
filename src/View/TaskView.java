@@ -29,7 +29,7 @@ public class TaskView {
     }
 
     public static void printForCreateTaskDate() {
-        System.out.println("Input date of task in format \"dd.MM.yyyy HH:mm:ss\":");
+        System.out.println("Input date of task in format \"dd.MM.yyyy\":");
     }
 
     public static void printAddTask(boolean f) {
@@ -51,11 +51,15 @@ public class TaskView {
 
     public static void printDeleteTask(List<TaskModel> list) {
         System.out.println("Enter the number of tasks that must be removed");
-        for(int i=0; i<list.size();i++){
-            System.out.println("no."+i+"; name of task: " + list.get(i).getName());
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("no." + i + "; name of task: " + list.get(i).getName());
         }
-
     }
+
+    public static void printDeleteEmptyList() {
+        System.out.println("Journal is EMPTY.");
+    }
+
 
     public static void printComplete() {
         System.out.println("Complete!");
@@ -65,6 +69,7 @@ public class TaskView {
     public static void printError() {
         System.out.println("ERROR! Something went wrong, try again.");
     }
+    //TODO
 
 
     public static void printExitToFirstMenu() {

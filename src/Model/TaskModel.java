@@ -1,17 +1,18 @@
 package Model;
 
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class TaskModel {
+public class TaskModel implements Serializable {
 
     private String name;
     private String text;
     private Calendar dateNotification;
-    SimpleDateFormat a = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+    SimpleDateFormat a = new SimpleDateFormat("dd.MM.yyyy");
     Date b;
 
 
