@@ -1,10 +1,17 @@
 package Controller;
+
 import Model.*;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class TaskManagement {
 
     private static JournalModel journal;
+
 
     public static void setJournalModel(JournalModel jm) {
         journal = jm;
@@ -16,11 +23,31 @@ public class TaskManagement {
 
 
     public static boolean createTask(String name, String text, String date) {
-        if (journal.getJournalList().add(new TaskModel(name, text, date))) {
+        if (validationTask(date)) {
+            journal.getJournalList().add(new TaskModel(name, text, date));
             return true;
         }
         return false;
     }
+
+
+    private static boolean validationTask(String date) {
+        Calendar dateNotification = Calendar.getInstance();
+        SimpleDateFormat a = new SimpleDateFormat("dd.MM.yyyy");
+        Date b;
+        try {
+            b = a.parse(date);
+            dateNotification.setTime(b);
+        } catch (ParseException e) {
+            return false;
+        }
+        Calendar nowTIme = Calendar.getInstance();
+        if (nowTIme.before(dateNotification)) {
+            return true;
+        }
+        return false;
+    }//TODO
+
 
     public static boolean deleteTask(int i) {
         journal.getJournalList().remove(i);//TODO добавить проверку существования удаляемого элемента

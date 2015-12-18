@@ -10,6 +10,8 @@ import com.google.gson.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -18,7 +20,7 @@ public class Task {
 
         File taskFile = new File("C://task//task.out");
         File taskFileJson = new File("C://task//taskJson.out");
-        WorkWithFile.setTaskFileJM(taskFile);
+       // WorkWithFile.setTaskFileJM(taskFile);
         WorkWithFile.setJsonFile(taskFileJson);
 
         JournalModel j;
@@ -27,27 +29,27 @@ public class Task {
 
 
         //For deserializable arraylist
-        if (taskFile.length() == 0) {
-            j = new JournalModel();
-            journal = new ArrayList<>();
-        } else {
-            j = WorkWithFile.deSerJM();
-            journal = j.getJournalList();
-        }
-        j.setJournal(journal);
+        // if (taskFile.length() == 0) {
+        //      j = new JournalModel();
+        //      journal = new ArrayList<>();
+        //   } else {
+        //       j = WorkWithFile.deSerJM();
+        //       journal = j.getJournalList();
+        //   }
+        //   j.setJournal(journal);
 
         // j.add(new TaskModel("name", "text", "22.06.2007 12:12:12"));
 
         //For deserializable Json
-        //if (taskFileJson.length() == 0) {
-        //    j = new JournalModel();
-        //   journal = new ArrayList<>();
-        //  j.setJournal(journal);
-        //} else {
-        //    json = WorkWithFile.deSerJson();
-        //    j = TaskToJson.fromJson(json);
-        //    journal = j.getJournalList();
-        //}
+        if (taskFileJson.length() == 0) {
+           j = new JournalModel();
+          journal = new ArrayList<>();
+         j.setJournal(journal);
+       } else {
+            json = WorkWithFile.deSerJson();
+            j = TaskToJson.fromJson(json);
+            journal = j.getJournalList();
+        }
 
 
         TaskManagement.setJournalModel(j);
@@ -55,6 +57,9 @@ public class Task {
         TaskView.hello();
         TaskView.printFirstmenu();
         TaskController.replyFirstMenu();
+        //Date nowTIme=new Date(System.currentTimeMillis());
+        Calendar c = Calendar.getInstance();
+
 
     }
 }

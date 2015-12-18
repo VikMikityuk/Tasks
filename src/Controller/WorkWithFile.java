@@ -19,6 +19,7 @@ public class WorkWithFile {
     }
 
     public static boolean existFile(File taskFile) {
+        taskFile.getParentFile().mkdirs();
         if (!(taskFile.exists())) try {
             taskFile.createNewFile();
         } catch (IOException ex) {
@@ -26,6 +27,7 @@ public class WorkWithFile {
         }
         return true;
     }
+
 
     public static void serJM(JournalModel j) throws IOException {
         FileOutputStream fos = new FileOutputStream(taskFile.getAbsoluteFile());

@@ -11,9 +11,10 @@ public class TaskModel implements Serializable {
 
     private String name;
     private String text;
-    private Calendar dateNotification;
-    SimpleDateFormat a = new SimpleDateFormat("dd.MM.yyyy");
-    Date b;
+    private String date;
+//    private Calendar dateNotification;
+//    SimpleDateFormat a = new SimpleDateFormat("dd.MM.yyyy");
+ //   Date b;
 
 
     public TaskModel(String name, String text, String date) {
@@ -32,14 +33,14 @@ public class TaskModel implements Serializable {
     }
 
     public void setDateNotification(String date) {
-        try {
-            b = a.parse(date);
-        } catch (ParseException e) {
-
-        }
-        this.dateNotification = Calendar.getInstance();
-        dateNotification.setTime(b);
-    }//TODO create exception
+     //   try {
+     //       b = a.parse(date);
+     //   } catch (ParseException e) {
+//        }
+  //      this.dateNotification = Calendar.getInstance();
+//        dateNotification.setTime(b);
+        this.date=date;
+    }
 
     public String getName() {
         return name;
@@ -49,13 +50,13 @@ public class TaskModel implements Serializable {
         return text;
     }
 
-    public Calendar getDateNotification() {
-        return dateNotification;
+    public String getDateNotification() {
+        return date;
     }
 
 
     @Override
     public String toString() {
-        return "Name Task: " + name + "; Text of Task: " + text + "; Notification: " + dateNotification.getTime();
+        return "Name Task: " + name + "; Text of Task: " + text + "; Notification: " + date;
     }
 }
