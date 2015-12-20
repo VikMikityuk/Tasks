@@ -16,8 +16,8 @@ public class Task {
     public static void main(String[] args) throws IOException {
 
         //File taskFile = new File("C://task//task.out");
-        File taskFileJson = new File("C://task//taskJson.out");
         // WorkWithFile.setTaskFileJM(taskFile);
+        File taskFileJson = new File("C://task//taskJson.out");
         WorkWithFile.setJsonFile(taskFileJson);
 
         JournalModel j;
@@ -34,8 +34,8 @@ public class Task {
         //       journal = j.getJournalList();
         //   }
         //   j.setJournal(journal);
-
         // j.add(new TaskModel("name", "text", "22.06.2007 12:12:12"));
+
 
         //For deserializable Json
         if (taskFileJson.length() == 0) {
@@ -50,7 +50,7 @@ public class Task {
 
 
         TaskManagement.setJournalModel(j);
-        SystemNotification.convertToMapNotification(j);
+        SystemNotification.convertToListNotification(j);
         TaskView.hello();
         TaskView.printFirstmenu();
         TaskController.replyFirstMenu();

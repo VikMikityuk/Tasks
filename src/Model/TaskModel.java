@@ -12,9 +12,7 @@ public class TaskModel implements Serializable {
     private String name;
     private String text;
     private String date;
-//    private Calendar dateNotification;
-//    SimpleDateFormat a = new SimpleDateFormat("dd.MM.yyyy");
- //   Date b;
+
 
 
     public TaskModel(String name, String text, String date) {
@@ -33,12 +31,6 @@ public class TaskModel implements Serializable {
     }
 
     public void setDateNotification(String date) {
-     //   try {
-     //       b = a.parse(date);
-     //   } catch (ParseException e) {
-//        }
-  //      this.dateNotification = Calendar.getInstance();
-//        dateNotification.setTime(b);
         this.date=date;
     }
 

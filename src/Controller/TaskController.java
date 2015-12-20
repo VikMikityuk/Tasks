@@ -58,7 +58,6 @@ public class TaskController {
         if (TaskManagement.createTask(nameTask, textTask, dayTask)) {
             TaskView.printAddTask(true);
         } else TaskView.printError();
-        //TODO добавить проверку вводимых значений.
         exitToMainMenu();
     }
 
@@ -69,7 +68,6 @@ public class TaskController {
             TaskView.printEmptyJournal();
         } else
             TaskView.printJournal(list);
-
         exitToMainMenu();
     }
 
@@ -89,9 +87,9 @@ public class TaskController {
 
 
     private static void exit() throws IOException {
-        WorkWithFile.serJson(TaskToJson.toJson(TaskManagement.getJournalModel()));//TODO dateFormat
+        WorkWithFile.serJson(TaskToJson.toJson(TaskManagement.getJournalModel()));
         //WorkWithFile.serJM(TaskManagement.getJournalModel());
-        System.out.println(SystemNotification.map);//TODO DELITE THIS STR!!!!
+        SystemNotification.closeAll();
     }
 
     private static void exitToMainMenu() throws IOException {

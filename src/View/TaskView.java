@@ -15,7 +15,7 @@ public class TaskView {
     public static void printFirstmenu() {
         System.out.println("1.Create Task;");
         System.out.println("2.Read Journal of Task;");
-        System.out.println("3.Delite Task");
+        System.out.println("3.Delete Task");
         System.out.println("4.Exit.");
     }
 
@@ -29,11 +29,11 @@ public class TaskView {
     }
 
     public static void printForCreateTaskDate() {
-        System.out.println("Input date of task in format \"dd.MM.yyyy\":");
+        System.out.println("Input date of task in format \"dd.MM.yyyy HH:mm:ss\":");
     }
 
     public static void printAddTask(boolean f) {
-        if (true) System.out.println("You Add new task!"); //TODO добавить ошибку -> добавить проверку вводимых значений
+        if (true) System.out.println("You Add new task!");
         else System.out.println("You don't add task, try again.");
     }
 
@@ -75,6 +75,4 @@ public class TaskView {
     public static void printExitToFirstMenu() {
         System.out.println("Enter 0 to exit to the main menu.");
     }
-
-
 }

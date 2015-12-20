@@ -26,7 +26,7 @@ public class TaskManagement {
         if (validationTask(date)) {
             TaskModel t=new TaskModel(name, text, date);
             journal.getJournalList().add(t);
-            SystemNotification.addToMapNotification(t);
+            SystemNotification.addToListNotification(t);
             return true;
         }
         return false;
@@ -35,24 +35,24 @@ public class TaskManagement {
 
     private static boolean validationTask(String date) {
         Calendar dateNotification = Calendar.getInstance();
-        SimpleDateFormat a = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat a = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
         Date b;
         try {
             b = a.parse(date);
             dateNotification.setTime(b);
         } catch (ParseException e) {
-            return false;
+            return false; //TODO
         }
         Calendar nowTIme = Calendar.getInstance();
         if (nowTIme.before(dateNotification)) {
             return true;
         }
         return false;
-    }//TODO
+    }
 
 
     public static boolean deleteTask(int i) {
-        SystemNotification.deliteNotification(journal.getJournalList().get(i));
+        SystemNotification.deleteNotification(journal.getJournalList().get(i));
         journal.getJournalList().remove(i);//TODO добавить проверку существования удаляемого элемента
         return true;
 
