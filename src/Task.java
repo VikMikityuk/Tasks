@@ -1,7 +1,4 @@
-import Controller.TaskController;
-import Controller.TaskManagement;
-import Controller.TaskToJson;
-import Controller.WorkWithFile;
+import Controller.*;
 import Model.JournalModel;
 import Model.TaskModel;
 import View.TaskView;
@@ -18,9 +15,9 @@ import java.util.List;
 public class Task {
     public static void main(String[] args) throws IOException {
 
-        File taskFile = new File("C://task//task.out");
+        //File taskFile = new File("C://task//task.out");
         File taskFileJson = new File("C://task//taskJson.out");
-       // WorkWithFile.setTaskFileJM(taskFile);
+        // WorkWithFile.setTaskFileJM(taskFile);
         WorkWithFile.setJsonFile(taskFileJson);
 
         JournalModel j;
@@ -42,10 +39,10 @@ public class Task {
 
         //For deserializable Json
         if (taskFileJson.length() == 0) {
-           j = new JournalModel();
-          journal = new ArrayList<>();
-         j.setJournal(journal);
-       } else {
+            j = new JournalModel();
+            journal = new ArrayList<>();
+            j.setJournal(journal);
+        } else {
             json = WorkWithFile.deSerJson();
             j = TaskToJson.fromJson(json);
             journal = j.getJournalList();
@@ -53,12 +50,10 @@ public class Task {
 
 
         TaskManagement.setJournalModel(j);
-
+        SystemNotification.convertToMapNotification(j);
         TaskView.hello();
         TaskView.printFirstmenu();
         TaskController.replyFirstMenu();
-        //Date nowTIme=new Date(System.currentTimeMillis());
-        Calendar c = Calendar.getInstance();
 
 
     }

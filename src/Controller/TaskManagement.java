@@ -22,9 +22,11 @@ public class TaskManagement {
     }
 
 
-    public static boolean createTask(String name, String text, String date) {
+    public static boolean createTask(String name, String text, String date){
         if (validationTask(date)) {
-            journal.getJournalList().add(new TaskModel(name, text, date));
+            TaskModel t=new TaskModel(name, text, date);
+            journal.getJournalList().add(t);
+            SystemNotification.addToMapNotification(t);
             return true;
         }
         return false;
@@ -50,6 +52,7 @@ public class TaskManagement {
 
 
     public static boolean deleteTask(int i) {
+        SystemNotification.deliteNotification(journal.getJournalList().get(i));
         journal.getJournalList().remove(i);//TODO добавить проверку существования удаляемого элемента
         return true;
 

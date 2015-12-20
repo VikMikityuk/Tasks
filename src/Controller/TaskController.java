@@ -7,6 +7,7 @@ import View.TaskView;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.ParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -56,8 +57,7 @@ public class TaskController {
 
         if (TaskManagement.createTask(nameTask, textTask, dayTask)) {
             TaskView.printAddTask(true);
-        }
-        else TaskView.printError();
+        } else TaskView.printError();
         //TODO добавить проверку вводимых значений.
         exitToMainMenu();
     }
@@ -91,6 +91,7 @@ public class TaskController {
     private static void exit() throws IOException {
         WorkWithFile.serJson(TaskToJson.toJson(TaskManagement.getJournalModel()));//TODO dateFormat
         //WorkWithFile.serJM(TaskManagement.getJournalModel());
+        System.out.println(SystemNotification.map);//TODO DELITE THIS STR!!!!
     }
 
     private static void exitToMainMenu() throws IOException {
