@@ -50,7 +50,7 @@ public class TaskView {
 
 
     public static void printDeleteTask(List<TaskModel> list) {
-        System.out.println("Enter the number of tasks that must be removed");
+        System.out.println("Enter the number of tasks that must be removed (or enter \"666\" for return to main menu)");
         for (int i = 0; i < list.size(); i++) {
             System.out.println("no." + i + "; name of task: " + list.get(i).getName());
         }
