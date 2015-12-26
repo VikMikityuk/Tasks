@@ -2,12 +2,12 @@ package Controller;
 
 
 import Model.TaskModel;
+import TaskFile.TaskToJson;
+import TaskFile.WorkWithFile;
 import View.TaskView;
 
 
-import java.io.File;
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,11 +19,15 @@ public class TaskController {
     private static String textTask;
     private static String dayTask;
     private static int a;
-    private static Scanner in = new Scanner(System.in);
 
 
-    public static void replyFirstMenu() throws IOException {
-        a = in.nextInt();
+    public static void replyFirstMenu() {
+        try {
+            Scanner in = new Scanner(System.in);
+            a = in.nextInt();
+        } catch (Exception e) {
+            a = 0;
+        }
         switch (a) {
             case 1:
                 createTask();
@@ -38,12 +42,13 @@ public class TaskController {
                 exit();
                 break;
             default:
-                TaskView.printError();
+                TaskView.printErrorIncorrectValue();
+                replyFirstMenu();
         }
     }
 
 
-    private static void createTask() throws IOException {
+    private static void createTask() {
         Scanner in = new Scanner(System.in);
         TaskView.printForCreateTaskName();
         String name = in.nextLine();
@@ -62,40 +67,58 @@ public class TaskController {
     }
 
 
-    private static void printjournal() throws IOException {
-
+    private static void printjournal() {
         if (list.isEmpty()) {
             TaskView.printEmptyJournal();
-        } else
-            TaskView.printJournal(list);
+        } else TaskView.printJournal(list);
+
         exitToMainMenu();
     }
 
 
-    private static void deleteTask() throws IOException {
+    private static void deleteTask() {
         if (list.size() == 0) {
             TaskView.printDeleteEmptyList();
             exitToMainMenu();
         } else {
             TaskView.printDeleteTask(list);
-            int id = in.nextInt();
-            TaskManagement.deleteTask(id);
-            TaskView.printComplete();//TODO добавить проверку ид
-            exitToMainMenu();
+            Scanner in = new Scanner(System.in);
+            try {
+                int id = in.nextInt();
+                if (id == 666) {
+                    TaskView.printFirstmenu();
+                    replyFirstMenu();
+                    return;
+                }
+                TaskManagement.deleteTask(id);
+                TaskView.printComplete();
+                exitToMainMenu();
+            } catch (IndexOutOfBoundsException e) {
+                TaskView.printErrorIncorrectValue();
+                deleteTask();
+            } catch (Exception e) {
+                TaskView.printErrorIncorrectValue();
+                deleteTask();
+            }
         }
     }
 
 
-    private static void exit() throws IOException {
-        WorkWithFile.serJson(TaskToJson.toJson(TaskManagement.getJournalModel()));
-        //WorkWithFile.serJM(TaskManagement.getJournalModel());
-        SystemNotification.closeAll();
+    private static void exit() {
+        try {
+            WorkWithFile.serJson(TaskToJson.toJson(TaskManagement.getJournalModel()));
+            //WorkWithFile.serJM(TaskManagement.getJournalModel());
+            SystemNotification.closeAll();
+        } catch (IOException e) {
+            TaskView.printError();
+        }
     }
 
-    private static void exitToMainMenu() throws IOException {
+    private static void exitToMainMenu() {
         TaskView.printExitToFirstMenu();
-        int ex = in.nextInt();
-        if (ex == 0 || ex != 0) {
+        Scanner in = new Scanner(System.in);
+        Object ex = in.nextLine();
+        if (ex == null || ex != null) {
             TaskView.printFirstmenu();
             replyFirstMenu();
         }

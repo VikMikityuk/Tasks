@@ -18,7 +18,7 @@ public class SystemNotification {
     public static void convertToListNotification(JournalModel jm) {
         listNotification = new ArrayList<>();
         jm.getJournalList().forEach(p ->
-                        listNotification.add(new NotificationModel(p.getName(), p.getText(), p.getDateNotification()))
+                listNotification.add(new NotificationModel(p.getName(), p.getText(), p.getDateNotification()))
         );
         listNotification.forEach(p -> {
             if (validationNotificationDate(p.getDate())) {
@@ -51,7 +51,7 @@ public class SystemNotification {
             b = a.parse(date);
             dateNotification.setTime(b);
         } catch (ParseException e) {
-            return false; //TODO- this is bad((
+            return false;
         }
         Calendar nowTIme = Calendar.getInstance();
         if (nowTIme.before(dateNotification)) {
@@ -63,7 +63,7 @@ public class SystemNotification {
 
     public static void closeAll() {
         listTimer.forEach(p ->
-                        p.cancel()
+                p.cancel()
         );
     }
 

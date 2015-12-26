@@ -53,7 +53,7 @@ public class TaskManagement {
 
     public static boolean deleteTask(int i) {
         SystemNotification.deleteNotification(journal.getJournalList().get(i));
-        journal.getJournalList().remove(i);//TODO добавить проверку существования удаляемого элемента
+        journal.getJournalList().remove(i);//TODO проверка существования удаляемого ид
         return true;
 
     }

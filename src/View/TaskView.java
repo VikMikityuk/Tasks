@@ -69,7 +69,10 @@ public class TaskView {
     public static void printError() {
         System.out.println("ERROR! Something went wrong, try again.");
     }
-    //TODO
+
+    public static void printErrorIncorrectValue() {
+        System.out.println("ERROR! Incorrect value, enter again");
+    }
 
 
     public static void printExitToFirstMenu() {

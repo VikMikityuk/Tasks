@@ -1,6 +1,7 @@
 package Model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -10,13 +11,12 @@ public class JournalModel implements Serializable {
 
 
     public JournalModel() {
-        setJournal(journalModel);
-
+        journalModel=new ArrayList<>();
     }
 
     public void setJournal(List<TaskModel> journal) {
         this.journalModel = journal;
-    }//TODO оптимизировать
+    }
 
     public List<TaskModel> getJournalList() {
         return journalModel;
