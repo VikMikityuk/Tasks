@@ -39,7 +39,7 @@ public class NotificationModel {
         try {
             b = a.parse(date);
         } catch (ParseException e) {
-            //TODO ?
+            return new Date("12.12.1993 12:12:00"); //i don't know why this date
         }
         return b;
     }
@@ -49,7 +49,7 @@ public class NotificationModel {
         this.t = new TimerTask() {
             @Override
             public void run() {
-                NotificationView.createGUI("You Have new Notification!" + name + " and text: " + text);//TODO after close???
+                NotificationView.createGUI("You Have new Notification!" + name + " and text: " + text);
                 System.out.println("notification!!");
             }
         };

@@ -4,6 +4,12 @@ import Model.TaskModel;
 
 import java.util.List;
 
+
+/**
+ * Выводит пользователю в консоль различную информацию.
+ */
+
+
 public class TaskView {
 
     public static void hello() {
@@ -42,7 +48,7 @@ public class TaskView {
         System.out.println("Journal of tasks is empty!!");
     }
 
-    public static void printJournal(List<TaskModel> list) {
+    public static void printJournal(List list) {
         list.forEach(p -> {
             System.out.println(p);
         });
@@ -72,6 +78,10 @@ public class TaskView {
 
     public static void printErrorIncorrectValue() {
         System.out.println("ERROR! Incorrect value, enter again");
+    }
+
+    public static void printErrorIncorrectFile() {
+        System.out.println("ERROR! problem with file");
     }
 
 

@@ -11,6 +11,9 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Scanner;
 
+/**
+ * Класс предназначен для обработки действий пользователя и в зависимости от результатов работой с системой.
+ */
 
 public class TaskController {
 
@@ -20,7 +23,9 @@ public class TaskController {
     private static String dayTask;
     private static int a;
 
-
+    /**
+     * Метод для обработки вводимого пользователем значение, и вызова последующийх методов для управления журналом
+     */
     public static void replyFirstMenu() {
         try {
             Scanner in = new Scanner(System.in);
@@ -47,7 +52,9 @@ public class TaskController {
         }
     }
 
-
+    /**
+     * Метод для создания новой задачи
+     */
     private static void createTask() {
         Scanner in = new Scanner(System.in);
         TaskView.printForCreateTaskName();
@@ -66,7 +73,9 @@ public class TaskController {
         exitToMainMenu();
     }
 
-
+    /**
+     * Метод для вывода журнала задач пользователю
+     */
     private static void printjournal() {
         if (list.isEmpty()) {
             TaskView.printEmptyJournal();
@@ -75,7 +84,9 @@ public class TaskController {
         exitToMainMenu();
     }
 
-
+    /**
+     * Метод для удаления задачи из журнала
+     */
     private static void deleteTask() {
         if (list.size() == 0) {
             TaskView.printDeleteEmptyList();
@@ -103,7 +114,9 @@ public class TaskController {
         }
     }
 
-
+    /**
+     * Метод для выхода из программы.
+     */
     private static void exit() {
         try {
             WorkWithFile.serJson(TaskToJson.toJson(TaskManagement.getJournalModel()));
@@ -114,6 +127,9 @@ public class TaskController {
         }
     }
 
+    /**
+     * Метод для возврата в главное меню.
+     */
     private static void exitToMainMenu() {
         TaskView.printExitToFirstMenu();
         Scanner in = new Scanner(System.in);

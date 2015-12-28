@@ -3,7 +3,19 @@ package View;
 import javax.swing.*;
 import java.awt.*;
 
+
+/**
+ * Выводит оповещение в виде окна с текстом.
+ */
+
 public class NotificationView {
+
+    /**
+     * Создает окно оповещения.
+     *
+     * @param str текстовое поле, которое отображается в оповещении
+     */
+
     public static void createGUI(String str) {
         JFrame.setDefaultLookAndFeelDecorated(true);
         JFrame frame = new JFrame("NOTIFICATION");

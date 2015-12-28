@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-
+/**
+ * Класс предназначен для управления журналом задач
+ */
 public class TaskManagement {
 
     private static JournalModel journal;
@@ -21,10 +23,17 @@ public class TaskManagement {
         return journal;
     }
 
-
-    public static boolean createTask(String name, String text, String date){
+    /**
+     * Метод создания новой задачи
+     *
+     * @param name - имя задачи
+     * @param date - дата оповещения задачи
+     * @param text - текст задачи
+     * @return результат создания и добавления задачи в журнал.
+     */
+    public static boolean createTask(String name, String text, String date) {
         if (validationTask(date)) {
-            TaskModel t=new TaskModel(name, text, date);
+            TaskModel t = new TaskModel(name, text, date);
             journal.getJournalList().add(t);
             SystemNotification.addToListNotification(t);
             return true;
@@ -32,7 +41,12 @@ public class TaskManagement {
         return false;
     }
 
-
+    /**
+     * Метод проверки данных задачи, а именно даты. Дата должна быть не раньше нынешнего момента.
+     *
+     * @param date - дата оповещения задачи
+     * @return результат проверки.
+     */
     private static boolean validationTask(String date) {
         Calendar dateNotification = Calendar.getInstance();
         SimpleDateFormat a = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
@@ -41,7 +55,7 @@ public class TaskManagement {
             b = a.parse(date);
             dateNotification.setTime(b);
         } catch (ParseException e) {
-            return false; //TODO
+            return false;
         }
         Calendar nowTIme = Calendar.getInstance();
         if (nowTIme.before(dateNotification)) {
@@ -50,12 +64,14 @@ public class TaskManagement {
         return false;
     }
 
-
-    public static boolean deleteTask(int i) {
+    /**
+     * Метод удаления задачи
+     *
+     * @param i - id задачи в журнале
+     */
+    public static void deleteTask(int i) {
         SystemNotification.deleteNotification(journal.getJournalList().get(i));
-        journal.getJournalList().remove(i);//TODO проверка существования удаляемого ид
-        return true;
-
+        journal.getJournalList().remove(i);
     }
 
     static String getElement(int i) {
